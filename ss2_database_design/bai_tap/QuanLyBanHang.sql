@@ -1,4 +1,5 @@
-create database quanlybanhang;
+drop database if exists quanlybanhang;
+create database if not exists quanlybanhang;
 
 use quanlybanhang;
 
