@@ -10,3 +10,26 @@ select * from `order`;
 select * from product;
 select * from orderdetail;
 
+-- Hiển thị các thông tin  gồm oID, oDate, oPrice của tất cả các hóa đơn trong bảng Order
+select oID, oDate, oTotalPrice from `order`;
+
+-- Hiển thị danh sách các khách hàng đã mua hàng, và danh sách sản phẩm được mua bởi các khách
+select c.cID, c.cName, c.cAge, GROUP_CONCAT( distinct p.pName) AS product_list from customer as c
+join `order` as o on c.cID = o.cID
+join orderdetail as od on o.oID = od.oID
+join product as p on od.pID = p.pID
+group by c.cID;
+
+-- Hiển thị tên những khách hàng không mua bất kỳ một sản phẩm nào
+select c.cName from customer as c
+left join `order` as o on c.cID = o.cID
+where o.oID is null;
+
+/* Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn
+(giá một hóa đơn được tính bằng tổng giá bán của từng loại mặt hàng xuất hiện trong hóa đơn. 
+Giá bán của từng loại được tính = odQTY*pPrice) */
+select o.oID, oDate, sum(od.odQTY*p.pPrice) as tong_hoa_don
+from `order` as o
+join orderdetail as od on o.oID = od.oID
+join product as p on od.pID = p.pID
+group by o.oID;
