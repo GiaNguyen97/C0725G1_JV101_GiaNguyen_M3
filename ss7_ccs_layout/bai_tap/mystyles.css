@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    overflow-x: hidden;
+    font-size: 1rem;
+}
+
+.header {
+    background-color: #222;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    height: 5vh;
+    flex-wrap: wrap;
+}
+
+.logo-img {
+    height: 3.5vh;
+    object-fit: contain;
+}
+
+#menu ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#menu ul li {
+    position: relative;
+}
+
+#menu ul li a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    display: block;
+}
+
+#menu ul li a:hover,
+#menu ul li a.active {
+    background-color: #111;
+    color: white;
+}
+
+#menu ul li ul.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #333;
+    list-style: none;
+    min-width: 10em;
+    z-index: 1000;
+}
+
+#menu ul li:hover ul.submenu {
+    display: block;
+}
+
+#menu ul li ul.submenu li a {
+    padding: 0.7em 1em;
+    color: white;
+}
+
+#menu ul li ul.submenu li a:hover {
+    background: #444;
+}
+
+#login {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.login-img {
+    width: 1.5em;
+    height: 1.5em;
+    object-fit: contain;
+}
+
+.login-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.login-btn:hover {
+    color: white;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    gap: 1.5vw;
+    padding: 2vw;
+    background-color: white;
+}
+
+.left, .right {
+    background-color: #eee;
+    padding: 1.5vw;
+}
+
+.left ul, .right ul {
+    list-style: none;
+}
+
+.left ul li, .right ul li {
+    margin-bottom: 1em;
+}
+
+.left ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1em;
+}
+
+.left ul li a:hover {
+    text-decoration: underline;
+}
+
+.center {
+    background: white;
+    padding: 2vw 3vw;
+}
+
+.center h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.8em;
+}
+
+.center h2 {
+    margin-top: 1.5em;
+    font-size: 2em;
+}
+
+.right ul li a {
+    display: block;
+    background-color: white;
+    border: 0.1em solid #ccc;
+    padding: 2em 0;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.right ul li a:hover {
+    background-color: #f5f5f5;
+}
+
+.footer {
+    background-color: #444;
+    color: white;
+    text-align: center;
+    padding: 1.5em 0;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+    color: black;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    color: darkred;
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+@media only screen and (max-width: 46.25em) {
+    .main {
+        grid-template-columns: 1fr;
+        padding: 1em;
+        gap: 1em;
+    }
+
+    .left, .center, .right {
+        padding: 1em;
+    }
+
+    .left li, .right li a {
+        font-size: 1.2em;
+        text-align: center;
+        word-break: break-word;
+    }
+
+    p {
+        font-size: 1em;
+        color: darkblue;
+    }
+
+    .title {
+        font-size: 2em;
+        color: red;
+    }
+
+    #menu ul {
+        display: none;
+    }
+
+    .login-btn {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 46.3em) and (max-width: 77.5em) {
+    .main {
+        grid-template-columns: 20% 60% 20%;
+    }
+}
+
+@media only screen and (min-width: 77.6em) {
+    .main {
+        grid-template-columns: 15% 70% 15%;
+    }
+}
