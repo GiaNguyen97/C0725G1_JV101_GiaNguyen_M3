@@ -4,8 +4,10 @@
 <html>
 <head>
     <title>User Management Application</title>
+    <c:import url="../layout/library.jsp"/>
 </head>
 <body>
+<c:import url="../layout/my_navbar.jsp"/>
 <center>
     <h1>User Management</h1>
     <h2>

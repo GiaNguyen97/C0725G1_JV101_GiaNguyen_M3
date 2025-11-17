@@ -11,10 +11,9 @@
 <head>
   <title>Danh sách khách hàng</title>
   <c:import url="../layout/library.jsp"/>
-</head>
+  </head>
 <body>
 <c:import url="../layout/my_navbar.jsp"/>
-<body>
 <h1>Danh sách khách hàng</h1>
 <br/>
 <table class="table table-dark table-striped">
@@ -33,5 +32,6 @@
     </tr>
   </c:forEach>
 </table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

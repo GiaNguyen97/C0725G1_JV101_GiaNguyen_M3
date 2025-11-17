@@ -21,25 +21,31 @@ public class ProductController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        System.out.println(action);
         switch (action) {
             case "add":
                 showFormAdd(req, resp);
                 break;
             case "edit":
-                int id = Integer.parseInt(req.getParameter("id"));
-                showFormEdit(req, resp,id);
+                showFormEdit(req, resp);
                 break;
             case "delete":
+                detete(req,resp);
                 break;
             default:
                 showList(req, resp);
         }
     }
 
-    private void showFormEdit(HttpServletRequest req, HttpServletResponse resp, int id) {
-        req.setAttribute("productList", productService.findAll());
-        req.setAttribute("id",id);
+    private void detete(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+        productService.delete(id);
+        showList(req,resp);
+    }
+
+    private void showFormEdit(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Product product= productService.findbyId(id);
+        req.setAttribute("product",product);
         try {
             req.getRequestDispatcher("view/products/edit.jsp").forward(req, resp);
         } catch (Exception e) {
@@ -79,8 +85,8 @@ public class ProductController extends HttpServlet {
             case "edit":
                 saveEdit(req, resp);
                 break;
-            case "delete":
-                break;
+//            case "delete":
+//                break;
             default:
 
 
@@ -98,10 +104,10 @@ public class ProductController extends HttpServlet {
     }
 
     private void saveAdd(HttpServletRequest req, HttpServletResponse resp) {
-        int id = Integer.parseInt(req.getParameter("id"));
+
         String name = req.getParameter("name");
         int price = Integer.parseInt(req.getParameter("price"));
-        Product product = new Product(id, name, price);
+        Product product = new Product( name, price);
         productService.add(product);
         showList(req, resp);
     }

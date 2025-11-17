@@ -1,4 +1,4 @@
-package org.example.user_manager.model;
+package org.example.user_manager.entity;
 
 public class User {
     protected int id;

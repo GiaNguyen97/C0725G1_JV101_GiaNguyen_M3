@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Trang chủ</title>
 </head>
 <body>
 <h1>Welcome to website</h1>
+<form action="/logout" method="get">
+    <button>Logout</button>
+</form>
 </body>
 </html>

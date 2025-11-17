@@ -33,10 +33,10 @@
             <td>${product.getName()}</td>
             <td>${product.getPrice()}</td>
             <td>
-                <a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/products?action=edit&id=${product.getId()}">Edit</a>
+                <a class="btn btn-success btn-sm" href="/products?action=edit&id=${product.getId()}">Edit</a>
             </td>
             <td>
-                <a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/products?action=delete&id=${product.getId()}">Delete</a>
+                <a class="btn btn-success btn-sm" href="/products?action=delete&id=${product.getId()}">Delete</a>
             </td>
         </tr>
     </c:forEach>

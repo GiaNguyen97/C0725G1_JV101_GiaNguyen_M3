@@ -1,12 +1,12 @@
-package org.example.user_manager.dao;
+package org.example.user_manager.repository;
 
-import org.example.user_manager.model.User;
+import org.example.user_manager.entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO implements IUserDAO{
+public class UserRepository implements IUserRepository {
     private String jdbcURL = "jdbc:mysql://localhost:3306/demo?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "Codegym@2025";
@@ -19,7 +19,7 @@ public class UserDAO implements IUserDAO{
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
 
-    public UserDAO() {
+    public UserRepository() {
     }
 
     protected Connection getConnection() {
@@ -37,7 +37,7 @@ public class UserDAO implements IUserDAO{
         return connection;
     }
 
-    public void insertUser(User user) throws SQLException {
+    public boolean insertUser(User user) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
@@ -48,7 +48,9 @@ public class UserDAO implements IUserDAO{
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
+            return false;
         }
+        return true;
     }
 
     public User selectUser(int id) {

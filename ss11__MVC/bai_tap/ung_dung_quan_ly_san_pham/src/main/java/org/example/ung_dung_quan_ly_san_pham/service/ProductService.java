@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ProductService implements IProductService {
     IProductRepository productRepository = new ProductRepository();
+
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -15,12 +16,12 @@ public class ProductService implements IProductService {
 
     @Override
     public boolean add(Product product) {
-        return productRepository.add(product);
+       return productRepository.add(product);
     }
 
     @Override
-    public boolean edit(int id,Product product) {
-        return productRepository.edit(id,product);
+    public boolean edit(int id, Product product) {
+        return productRepository.edit(id, product);
     }
 
     @Override
@@ -32,4 +33,5 @@ public class ProductService implements IProductService {
     public boolean delete(int id) {
         return productRepository.delete(id);
     }
-}
+
+    }

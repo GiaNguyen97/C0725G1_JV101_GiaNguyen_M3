@@ -7,12 +7,12 @@ import java.util.List;
 
 public class ProductRepository implements IProductRepository {
     private static List<Product> productList = new ArrayList<>();
-
+    private int currentId = 4;
     static {
-        productList.add(new Product(1, "Sản phẩm A", 30000));
-        productList.add(new Product(2, "Sản phẩm B", 40000));
-        productList.add(new Product(3, "Sản phẩm C", 50000));
-        productList.add(new Product(4, "Sản phẩm D", 60000));
+        productList.add(new Product(1,"Sản phẩm A", 30000));
+        productList.add(new Product(2,"Sản phẩm B", 40000));
+        productList.add(new Product(3,"Sản phẩm C", 50000));
+        productList.add(new Product(4,"Sản phẩm D", 60000));
     }
 
     @Override
@@ -22,25 +22,32 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public boolean add(Product product) {
+        product.setId(++currentId);
         productList.add(product);
         return true;
     }
 
     @Override
     public boolean edit(int id, Product product) {
-        productList.get(id - 1).setName(product.getName());
-        productList.get(id - 1).setPrice(product.getPrice());
+        findbyId(id).setName(product.getName());
+        findbyId(id).setPrice(product.getPrice());
         return true;
     }
 
     @Override
     public Product findbyId(int id) {
-        return productList.get(id - 1);
+        int i;
+        for (i = 0;i<productList.size();i++) {
+            if (productList.get(i).getId() == id) {
+                return productList.get(i);
+            }
+        }
+        return null;
     }
 
     @Override
     public boolean delete(int id) {
-        productList.remove(id-1);
+        productList.remove(productList.indexOf(findbyId(id)));
         return true;
     }
 }

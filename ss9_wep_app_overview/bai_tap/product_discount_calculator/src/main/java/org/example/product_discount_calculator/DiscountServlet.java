@@ -18,17 +18,17 @@ public class DiscountServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            String productDescription = req.getParameter("productDescription");
-            float listPrice = Float.parseFloat(req.getParameter("listPrice"));
-            float discountPercent = Float.parseFloat(req.getParameter("discountPercent"));
-            float discountAmount = (float) (listPrice * discountPercent *0.01);
+        String productDescription = req.getParameter("productDescription");
+        float listPrice = Float.parseFloat(req.getParameter("listPrice"));
+        float discountPercent = Float.parseFloat(req.getParameter("discountPercent"));
+        float discountAmount = (float) (listPrice * discountPercent * 0.01);
         DecimalFormat df = new DecimalFormat("#,###.00");
         String formatted = df.format(discountAmount);
-            req.setAttribute("productDescription",productDescription);
-            req.setAttribute("listPrice",listPrice);
-            req.setAttribute("discountPercent",discountPercent);
-            req.setAttribute("discountAmount",formatted);
-            req.getRequestDispatcher("discount.jsp").forward(req, resp);
+        req.setAttribute("productDescription", productDescription);
+        req.setAttribute("listPrice", listPrice);
+        req.setAttribute("discountPercent", discountPercent);
+        req.setAttribute("discountAmount", formatted);
+        req.getRequestDispatcher("discount.jsp").forward(req, resp);
 
     }
 }

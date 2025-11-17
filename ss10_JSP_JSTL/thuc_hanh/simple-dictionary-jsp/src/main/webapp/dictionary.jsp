@@ -1,16 +1,37 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Hi
-  Date: 13/11/2025
-  Time: 8:55 SA
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Simple Dictionary</title>
+</head>
+<body>
+<%!
+    Map<String, String> dic = new HashMap<>();
+%>
+
+<%
+    dic.put("hello", "Xin chào");
+    dic.put("how", "Thế nào");
+    dic.put("book", "Quyển vở");
+    dic.put("computer", "Máy tính");
+
+    String search = request.getParameter("search");
+    String result = dic.get(search);
+
+    if (result != null) {
+%>
+<h3>Word: <%= search %>
+</h3>
+<p>Result: <%= result %>
+</p>
+<%
+} else {
+%>
+<p>Not found</p>
+<%
+    }
+%>
+<a href="index.jsp">Back</a>
+</body>
 </html>

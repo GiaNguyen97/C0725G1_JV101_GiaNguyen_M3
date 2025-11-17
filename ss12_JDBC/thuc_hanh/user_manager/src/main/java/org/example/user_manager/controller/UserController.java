@@ -6,21 +6,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.user_manager.dao.IUserDAO;
-import org.example.user_manager.model.User;
-import org.example.user_manager.dao.UserDAO;
+import org.example.user_manager.repository.IUserRepository;
+import org.example.user_manager.entity.User;
+import org.example.user_manager.repository.UserRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-    
+
 @WebServlet(name = "UserServlet", urlPatterns = "/users")
-public class UserServlet extends HttpServlet {
+public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private IUserDAO userDAO;
+    private IUserRepository userDAO;
 
     public void init() {
-        userDAO = new UserDAO();
+        userDAO = new UserRepository();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -74,13 +74,13 @@ public class UserServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<User> listUser = userDAO.selectAllUsers();
         request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/list.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/add.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -88,7 +88,7 @@ public class UserServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         User existingUser = userDAO.selectUser(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
 
@@ -101,7 +101,7 @@ public class UserServlet extends HttpServlet {
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
         userDAO.insertUser(newUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/add.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -114,7 +114,7 @@ public class UserServlet extends HttpServlet {
 
         User book = new User(id, name, email, country);
         userDAO.updateUser(book);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/edit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -125,7 +125,7 @@ public class UserServlet extends HttpServlet {
 
         List<User> listUser = userDAO.selectAllUsers();
         request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/list.jsp");
         dispatcher.forward(request, response);
     }
 }
