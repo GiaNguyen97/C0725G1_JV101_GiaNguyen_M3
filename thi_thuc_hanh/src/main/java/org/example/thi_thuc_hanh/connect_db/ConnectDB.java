@@ -1,11 +1,11 @@
-package org.example.product_manager_dao.connect_db;
+package org.example.thi_thuc_hanh.connect_db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDB {
-    private static final String URL ="jdbc:mysql://localhost:3306/quanlybanhang"; // sửa lại tên của csdl
+    private static final String URL ="jdbc:mysql://localhost:3306/quan_ly_thuong_mai_codegym"; // sửa lại tên của csdl
     private static final String USER ="root";// mặc định của mysql
     private static final String PASS ="Codegym@2025";// do cài đặt khi cài đặt mysql
     public static Connection getConnectDB(){
