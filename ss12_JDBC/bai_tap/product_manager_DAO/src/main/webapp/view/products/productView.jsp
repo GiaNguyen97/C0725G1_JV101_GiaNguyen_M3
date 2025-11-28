@@ -24,9 +24,8 @@
     <button type="submit" class="btn btn-primary">Tìm</button>
 </form>
 
-<table class="table table-dark table-striped">
+<table id="#tableStudent" class="table table-dark table-striped">
     <thead>
-
     <tr>
         <th scope="col">No</th>
         <th scope="col">ID</th>
@@ -36,7 +35,7 @@
         <th scope="col"></th>
     </tr>
     </thead>
-
+    <tbody>
 
     <c:forEach var="product" items="${productList}" varStatus="status">
 
@@ -57,8 +56,9 @@
         </tr>
     </c:forEach>
 </table>
+</tbody>
 <a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/products?action=add">Add new product</a>
-
+<!-- Delete Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="/products?action=delete" method="post">
@@ -137,6 +137,13 @@
         const toast = new bootstrap.Toast(toastEl);
         toast.show();
     }
+    $(document).ready(function() {
+        $('#tableStudent').dataTable( {
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        } );
+    } );
 
 </script>
 <c:if test="${not empty param.mess}">
@@ -148,5 +155,6 @@
         );
     </script>
 </c:if>
+
 </body>
 </html>
